@@ -3,6 +3,7 @@ package com.company;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.component.CollidableComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.BoundingShape;
@@ -20,7 +21,8 @@ private enum Type {
     PLAYER, BLUEDOT
 }
 private PlayerControl playerControl;
-private Entity player;
+private Entity player,bluedot;
+
     @Override
     protected void initSettings(GameSettings gameSettings) {
         // basale gamessetings. Styrer størrelsen af vores program. Og om der skal være en menu osv.
@@ -46,6 +48,21 @@ player = Entities.builder()
         .viewFromNode(new Rectangle(25,25, Color.DARKRED))
         .with(playerControl)
         .buildAndAttach(getGameWorld());
+
+// spawner vores bluedot.
+        bluedot = Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(100,100)
+                .viewFromNodeWithBBox(new Rectangle(100,100,Color.BLUE))
+                .build();
+
+
+
+        player.addComponent(new CollidableComponent(true));
+        bluedot.addComponent(new CollidableComponent(true));
+
+getGameWorld().addEntities(player,bluedot);
+
     }
 
     @Override
@@ -85,6 +102,9 @@ player = Entities.builder()
         }, KeyCode.S);
     }
 
+    protected void initPhysics(){
+        
+    }
     public static void main(String[] args) {
         launch(args);
     }
