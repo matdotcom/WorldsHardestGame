@@ -7,7 +7,9 @@ import com.almasb.fxgl.entity.component.CollidableComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.BoundingShape;
+import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.physics.HitBox;
+import com.almasb.fxgl.physics.PhysicsWorld;
 import com.almasb.fxgl.settings.GameSettings;
 import common.PlayerControl;
 import javafx.scene.input.KeyCode;
@@ -47,13 +49,14 @@ player = Entities.builder()
         .bbox(new HitBox("PLAYER_BODY", BoundingShape.box(25,25)))
         .viewFromNode(new Rectangle(25,25, Color.DARKRED))
         .with(playerControl)
-        .buildAndAttach(getGameWorld());
+        .build();
 
 // spawner vores bluedot.
-        bluedot = Entities.builder()
+//
+bluedot = Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(100,100)
-                .viewFromNodeWithBBox(new Rectangle(100,100,Color.BLUE))
+                .at(200,200)
+                .viewFromNodeWithBBox(new Rectangle(13,13,Color.BLUE))
                 .build();
 
 
@@ -103,7 +106,20 @@ getGameWorld().addEntities(player,bluedot);
     }
 
     protected void initPhysics(){
-        
+
+
+        PhysicsWorld physics = getPhysicsWorld();
+
+
+        // her laver vi en kollision imellem player og bluedot.
+        physics.addCollisionHandler(new CollisionHandler(Type.PLAYER, Type.BLUEDOT) {
+
+            // Her definerer vi at hvis en kollision finder sted imellem player og bluedot, sætter den players position tilbage til spawn!! 
+           @Override
+            protected void onHitBoxTrigger(Entity player, Entity bluedot, HitBox playerBox, HitBox bluedotBox){
+               player.setPosition(25,100);
+           }
+        });
     }
     public static void main(String[] args) {
         launch(args);
