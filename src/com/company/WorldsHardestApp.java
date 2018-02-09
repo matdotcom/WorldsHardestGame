@@ -53,15 +53,73 @@ private Entity player,bluedot;
 //
 bluedot = Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(200,200)
-                .viewFromNodeWithBBox(new Rectangle(13,13,Color.BLUE))
+                .at(0,0)
+                .viewFromNodeWithBBox(new Rectangle(4,4,Color.BLUE))
                 .build();
 // Spawner bluedot 2
         Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(400,400)
-                .viewFromNodeWithBBox(new Rectangle(13,13,Color.BLUE))
+                .viewFromNodeWithBBox(new Rectangle(300,13,Color.BLUE))
                 .with(rotatingControl)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+     //Spawner bluedot
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(660,145)
+                .viewFromNodeWithBBox(new Rectangle(13,300,Color.BLUE))
+                .with(rotatingControl)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        // Her laver jeg mappet
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(0,0)
+                .viewFromNodeWithBBox(new Rectangle(4,1000,Color.BLUE))
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(0,796)
+                .viewFromNodeWithBBox(new Rectangle(1200,4,Color.BLUE))
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(0,0)
+                .viewFromNodeWithBBox(new Rectangle(1200,4,Color.BLUE))
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(1196,0)
+                .viewFromNodeWithBBox(new Rectangle(4,800,Color.BLUE))
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(0,400)
+                .viewFromNodeWithBBox(new Rectangle(1000,4,Color.BLUE))
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(200,200)
+                .viewFromNodeWithBBox(new Rectangle(1000,4,Color.BLUE))
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(200,600)
+                .viewFromNodeWithBBox(new Rectangle(1000,4,Color.BLUE))
                 .with(new CollidableComponent(true))
                 .buildAndAttach();
 
@@ -69,7 +127,7 @@ bluedot = Entities.builder()
         // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
         player = Entities.builder()
                 .type(Type.PLAYER)
-                .at(25,100)
+                .at(1100,80)
                 .bbox(new HitBox("PLAYER_BODY", BoundingShape.box(25,25)))
                 .viewFromNode(new Rectangle(25,25, Color.DARKRED))
                 .with(playerControl)
