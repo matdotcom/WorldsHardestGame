@@ -27,6 +27,7 @@ private enum Type {
 private RotatingControl rotatingControl;
 private PlayerControl playerControl;
 private Entity player,bluedot;
+private ReverseRotation reverseRotation;
 
     @Override
     protected void initSettings(GameSettings gameSettings) {
@@ -46,6 +47,7 @@ private Entity player,bluedot;
     protected void initGame() {
         playerControl = new PlayerControl();
         rotatingControl = new RotatingControl();
+        reverseRotation = new ReverseRotation();
 
         // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
 
@@ -56,22 +58,40 @@ bluedot = Entities.builder()
                 .at(0,0)
                 .viewFromNodeWithBBox(new Rectangle(4,4,Color.BLUE))
                 .build();
-// Spawner bluedot 2
+// Spawner de roterende ting som man skal undgå i første række af mappet. 
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(400,400)
-                .viewFromNodeWithBBox(new Rectangle(300,13,Color.BLUE))
+                .at(800,4)
+                .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
                 .with(rotatingControl)
                 .with(new CollidableComponent(true))
                 .buildAndAttach();
-     //Spawner bluedot
+
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(660,145)
-                .viewFromNodeWithBBox(new Rectangle(13,300,Color.BLUE))
+                .at(600,4)
+                .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
+                .with(reverseRotation)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(200,4)
+                .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
+                .with(reverseRotation)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(400,4)
+                .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
                 .with(rotatingControl)
                 .with(new CollidableComponent(true))
                 .buildAndAttach();
+
 
         // Her laver jeg mappet
         Entities.builder()
@@ -196,7 +216,7 @@ getGameWorld().addEntities(player,bluedot);
             // Her definerer vi at hvis en kollision finder sted imellem player og bluedot, sætter den players position tilbage til spawn!!
            @Override
             protected void onHitBoxTrigger(Entity player, Entity bluedot, HitBox playerBox, HitBox bluedotBox){
-               player.setPosition(25,100);
+               player.setPosition(1100,80);
            }
         });
     }
