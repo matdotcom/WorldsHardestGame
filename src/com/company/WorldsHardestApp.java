@@ -56,7 +56,7 @@ bluedot = Entities.builder()
                 .at(200,200)
                 .viewFromNodeWithBBox(new Rectangle(13,13,Color.BLUE))
                 .build();
-
+// Spawner bluedot 2
         Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(400,400)
