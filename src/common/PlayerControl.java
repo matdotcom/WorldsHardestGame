@@ -23,19 +23,19 @@ import com.almasb.fxgl.entity.component.Required;
         }
 
         public void up() {
-            position.translateY(-2 * speed);
+            position.translateY(-1.5 * speed);
         }
 
         public void down() {
-            position.translateY(2 * speed);
+            position.translateY(1.5 * speed);
         }
 
         public void left() {
-            position.translateX(-2 * speed);
+            position.translateX(-1.5 * speed);
         }
 
         public void right() {
-            position.translateX(2 * speed);
+            position.translateX(1.5 * speed);
         }
     }
 

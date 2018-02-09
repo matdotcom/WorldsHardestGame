@@ -58,7 +58,7 @@ bluedot = Entities.builder()
                 .at(0,0)
                 .viewFromNodeWithBBox(new Rectangle(4,4,Color.BLUE))
                 .build();
-// Spawner de roterende ting som man skal undgå i første række af mappet. 
+// Spawner de roterende hjul som man skal undgå i første række af mappet.
         Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(800,4)
@@ -89,6 +89,38 @@ bluedot = Entities.builder()
                 .at(400,4)
                 .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
                 .with(rotatingControl)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(300,96)
+                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
+                .with(rotatingControl)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(500,96)
+                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
+                .with(reverseRotation)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(700,96)
+                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
+                .with(rotatingControl)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(100,96)
+                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
+                .with(reverseRotation)
                 .with(new CollidableComponent(true))
                 .buildAndAttach();
 

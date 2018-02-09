@@ -8,5 +8,5 @@ public class ReverseRotation extends Control {
     @Override
     public void onUpdate(Entity entity, double tpf) {
         // 2. specify behavior of the entity enforced by this control
-        entity.rotateBy(tpf * -45);}}
+        entity.rotateBy(tpf * -60);}}
 
