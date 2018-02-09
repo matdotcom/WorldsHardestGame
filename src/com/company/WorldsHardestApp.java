@@ -3,6 +3,7 @@ package com.company;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.EntitySpawner;
 import com.almasb.fxgl.entity.component.CollidableComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
@@ -22,6 +23,7 @@ public class WorldsHardestApp extends GameApplication {
 private enum Type {
     PLAYER, BLUEDOT
 }
+private RotatingControl rotatingControl;
 private PlayerControl playerControl;
 private Entity player,bluedot;
 
@@ -42,14 +44,8 @@ private Entity player,bluedot;
     @Override
     protected void initGame() {
         playerControl = new PlayerControl();
+        rotatingControl = new RotatingControl();
         // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
-player = Entities.builder()
-        .type(Type.PLAYER)
-        .at(25,100)
-        .bbox(new HitBox("PLAYER_BODY", BoundingShape.box(25,25)))
-        .viewFromNode(new Rectangle(25,25, Color.DARKRED))
-        .with(playerControl)
-        .build();
 
 // spawner vores bluedot.
 //
@@ -59,12 +55,33 @@ bluedot = Entities.builder()
                 .viewFromNodeWithBBox(new Rectangle(13,13,Color.BLUE))
                 .build();
 
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(400,400)
+                .viewFromNodeWithBBox(new Rectangle(13,13,Color.BLUE))
+                .with(rotatingControl)
+                .buildAndAttach();
+
+
+        // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
+        player = Entities.builder()
+                .type(Type.PLAYER)
+                .at(25,100)
+                .bbox(new HitBox("PLAYER_BODY", BoundingShape.box(25,25)))
+                .viewFromNode(new Rectangle(25,25, Color.DARKRED))
+                .with(playerControl)
+                .build();
+
+
 
 
         player.addComponent(new CollidableComponent(true));
         bluedot.addComponent(new CollidableComponent(true));
 
+
 getGameWorld().addEntities(player,bluedot);
+
+
 
     }
 
@@ -114,7 +131,7 @@ getGameWorld().addEntities(player,bluedot);
         // her laver vi en kollision imellem player og bluedot.
         physics.addCollisionHandler(new CollisionHandler(Type.PLAYER, Type.BLUEDOT) {
 
-            // Her definerer vi at hvis en kollision finder sted imellem player og bluedot, sætter den players position tilbage til spawn!! 
+            // Her definerer vi at hvis en kollision finder sted imellem player og bluedot, sætter den players position tilbage til spawn!!
            @Override
             protected void onHitBoxTrigger(Entity player, Entity bluedot, HitBox playerBox, HitBox bluedotBox){
                player.setPosition(25,100);
