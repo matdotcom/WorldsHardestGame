@@ -23,6 +23,7 @@ public class WorldsHardestApp extends GameApplication {
 private enum Type {
     PLAYER, BLUEDOT
 }
+
 private RotatingControl rotatingControl;
 private PlayerControl playerControl;
 private Entity player,bluedot;
@@ -45,6 +46,7 @@ private Entity player,bluedot;
     protected void initGame() {
         playerControl = new PlayerControl();
         rotatingControl = new RotatingControl();
+
         // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
 
 // spawner vores bluedot.
@@ -60,6 +62,7 @@ bluedot = Entities.builder()
                 .at(400,400)
                 .viewFromNodeWithBBox(new Rectangle(13,13,Color.BLUE))
                 .with(rotatingControl)
+                .with(new CollidableComponent(true))
                 .buildAndAttach();
 
 
@@ -77,6 +80,7 @@ bluedot = Entities.builder()
 
         player.addComponent(new CollidableComponent(true));
         bluedot.addComponent(new CollidableComponent(true));
+
 
 
 getGameWorld().addEntities(player,bluedot);
