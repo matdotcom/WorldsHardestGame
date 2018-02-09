@@ -52,7 +52,7 @@ private ReverseRotation reverseRotation;
         // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
 
 // spawner vores bluedot.
-//
+// DONT DELETE THIS. GAME WILL BREAK IF U DO.
 bluedot = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(0,0)
