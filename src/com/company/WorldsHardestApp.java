@@ -17,6 +17,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import static com.almasb.fxgl.app.DSLKt.loopBGM;
+
 public class WorldsHardestApp extends GameApplication {
 
     // laver en player. Vi definerer vores ting i spillet i form af enums.
@@ -29,6 +31,13 @@ private PlayerControl playerControl;
 private Entity player,bluedot;
 private ReverseRotation reverseRotation;
 
+    @Override
+    protected void preInit() {
+        getAudioPlayer().setGlobalSoundVolume(0.2);
+        getAudioPlayer().setGlobalMusicVolume(0.2);
+
+        loopBGM("bgm.mp3");
+    }
     @Override
     protected void initSettings(GameSettings gameSettings) {
         // basale gamessetings. Styrer størrelsen af vores program. Og om der skal være en menu osv.
@@ -48,6 +57,7 @@ private ReverseRotation reverseRotation;
         playerControl = new PlayerControl();
         rotatingControl = new RotatingControl();
         reverseRotation = new ReverseRotation();
+
 
         // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
 
@@ -123,6 +133,7 @@ bluedot = Entities.builder()
                 .with(reverseRotation)
                 .with(new CollidableComponent(true))
                 .buildAndAttach();
+
 
 
         // Her laver jeg mappet
@@ -234,6 +245,7 @@ getGameWorld().addEntities(player,bluedot);
                 playerControl.down();
             }
         }, KeyCode.S);
+
     }
 
     protected void initPhysics(){
@@ -249,6 +261,7 @@ getGameWorld().addEntities(player,bluedot);
            @Override
             protected void onHitBoxTrigger(Entity player, Entity bluedot, HitBox playerBox, HitBox bluedotBox){
                player.setPosition(1100,80);
+               getAudioPlayer().playSound("smack.wav");
            }
         });
     }
