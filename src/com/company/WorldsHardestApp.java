@@ -5,6 +5,7 @@ import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntitySpawner;
 import com.almasb.fxgl.entity.component.CollidableComponent;
+import com.almasb.fxgl.gameplay.Level;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.BoundingShape;
@@ -23,13 +24,14 @@ public class WorldsHardestApp extends GameApplication {
 
     // laver en player. Vi definerer vores ting i spillet i form af enums.
 private enum Type {
-    PLAYER, BLUEDOT
+    PLAYER, BLUEDOT, ENDZONE
 }
 
 private RotatingControl rotatingControl;
 private PlayerControl playerControl;
-private Entity player,bluedot;
+private Entity player,bluedot, endzone;
 private ReverseRotation reverseRotation;
+
 
     @Override
     protected void preInit() {
@@ -68,6 +70,15 @@ bluedot = Entities.builder()
                 .at(0,0)
                 .viewFromNodeWithBBox(new Rectangle(4,4,Color.BLUE))
                 .build();
+// x = 1100, y = 604
+endzone = Entities.builder()
+        .type(Type.ENDZONE)
+        .at(1100,604)
+        .viewFromNodeWithBBox(new Rectangle(96,206,Color.GREEN))
+        .buildAndAttach();
+
+
+
 // Spawner de roterende hjul som man skal undgå i første række af mappet.
         Entities.builder()
                 .type(Type.BLUEDOT)
@@ -201,6 +212,7 @@ bluedot = Entities.builder()
 
         player.addComponent(new CollidableComponent(true));
         bluedot.addComponent(new CollidableComponent(true));
+        endzone.addComponent(new CollidableComponent(true));
 
 
 
@@ -249,9 +261,16 @@ getGameWorld().addEntities(player,bluedot);
     }
 
     protected void initPhysics(){
-
-
         PhysicsWorld physics = getPhysicsWorld();
+
+        physics.addCollisionHandler(new CollisionHandler(Type.PLAYER, Type.ENDZONE) {
+
+            // Her definerer vi at hvis en kollision finder sted imellem player og bluedot, sætter den players position tilbage til spawn!!
+            @Override
+            protected void onHitBoxTrigger(Entity player, Entity endzone, HitBox playerBox, HitBox endzoneBox){
+                System.out.println("this is a test");
+            }
+        });
 
 
         // her laver vi en kollision imellem player og bluedot.
