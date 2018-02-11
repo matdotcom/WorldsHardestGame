@@ -30,7 +30,6 @@ private RotatingControl rotatingControl;
 private PlayerControl playerControl;
 private Entity player,bluedot, endzone;
 private ReverseRotation reverseRotation;
-private BluedotControl bluedotControl;
 
 
     @Override
@@ -59,7 +58,7 @@ private BluedotControl bluedotControl;
         playerControl = new PlayerControl();
         rotatingControl = new RotatingControl();
         reverseRotation = new ReverseRotation();
-        bluedotControl = new BluedotControl();
+
 
 
         // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
