@@ -6,6 +6,7 @@ import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntitySpawner;
 import com.almasb.fxgl.entity.component.CollidableComponent;
+import com.almasb.fxgl.entity.control.LiftControl;
 import com.almasb.fxgl.gameplay.Level;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
@@ -30,6 +31,8 @@ private RotatingControl rotatingControl;
 private PlayerControl playerControl;
 private Entity player,bluedot, endzone;
 private ReverseRotation reverseRotation;
+private BluedotControl bluedotControl;
+private ReverseBluedotControl reverseBluedotControl;
 
 
     @Override
@@ -58,7 +61,8 @@ private ReverseRotation reverseRotation;
         playerControl = new PlayerControl();
         rotatingControl = new RotatingControl();
         reverseRotation = new ReverseRotation();
-
+        bluedotControl = new BluedotControl();
+        reverseBluedotControl = new ReverseBluedotControl();
 
 
         // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
@@ -78,6 +82,136 @@ endzone = Entities.builder()
         .buildAndAttach();
 
 // Spawner patruljerende bluedots
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(200,200)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(250,352)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new ReverseBluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(300,200)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(350,352)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new ReverseBluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(400,200)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(450,352)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new ReverseBluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(500,200)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(550,352)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new ReverseBluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(600,200)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(650,352)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new ReverseBluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(700,200)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(750,352)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new ReverseBluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(800,200)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(850,352)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new ReverseBluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(900,200)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(950,352)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new ReverseBluedotControl())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+
 
 
 
