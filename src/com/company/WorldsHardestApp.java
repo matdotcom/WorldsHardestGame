@@ -1,17 +1,12 @@
 package com.company;
 
-import com.almasb.fxgl.ai.AIControl;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.EntitySpawner;
 import com.almasb.fxgl.entity.component.CollidableComponent;
-import com.almasb.fxgl.entity.control.LiftControl;
-import com.almasb.fxgl.gameplay.Level;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.*;
-import com.almasb.fxgl.physics.box2d.dynamics.World;
 import com.almasb.fxgl.settings.GameSettings;
 import common.PlayerControl;
 import javafx.scene.input.KeyCode;
@@ -31,9 +26,10 @@ private RotatingControl rotatingControl;
 private PlayerControl playerControl;
 private Entity player,bluedot, endzone;
 private ReverseRotation reverseRotation;
-private BluedotControl bluedotControl;
-private ReverseBluedotControl reverseBluedotControl;
-
+private BluedotControlUp bluedotControlUp;
+private BluedotControlDown bluedotControlDown;
+private BluedotControlLeft bluedotControlLeft;
+private BluedotControlRight bluedotControlRight;
 
     @Override
     protected void preInit() {
@@ -61,8 +57,10 @@ private ReverseBluedotControl reverseBluedotControl;
         playerControl = new PlayerControl();
         rotatingControl = new RotatingControl();
         reverseRotation = new ReverseRotation();
-        bluedotControl = new BluedotControl();
-        reverseBluedotControl = new ReverseBluedotControl();
+        bluedotControlUp = new BluedotControlUp();
+        bluedotControlDown = new BluedotControlDown();
+        bluedotControlLeft = new BluedotControlLeft();
+        bluedotControlRight = new BluedotControlRight();
 
 
         // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
@@ -81,13 +79,13 @@ endzone = Entities.builder()
         .viewFromNodeWithBBox(new Rectangle(96,206,Color.GREEN))
         .buildAndAttach();
 
-// Spawner patruljerende bluedots
+// Spawner patruljerende bluedots i anden række
 
         Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(200,200)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new BluedotControl())
+                .with(new BluedotControlUp())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -95,7 +93,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(250,352)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new ReverseBluedotControl())
+                .with(new BluedotControlDown())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -103,7 +101,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(300,200)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new BluedotControl())
+                .with(new BluedotControlUp())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -111,7 +109,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(350,352)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new ReverseBluedotControl())
+                .with(new BluedotControlDown())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -119,7 +117,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(400,200)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new BluedotControl())
+                .with(new BluedotControlUp())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -127,7 +125,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(450,352)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new ReverseBluedotControl())
+                .with(new BluedotControlDown())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -135,7 +133,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(500,200)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new BluedotControl())
+                .with(new BluedotControlUp())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -143,7 +141,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(550,352)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new ReverseBluedotControl())
+                .with(new BluedotControlDown())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -151,7 +149,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(600,200)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new BluedotControl())
+                .with(new BluedotControlUp())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -159,7 +157,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(650,352)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new ReverseBluedotControl())
+                .with(new BluedotControlDown())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -167,7 +165,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(700,200)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new BluedotControl())
+                .with(new BluedotControlUp())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -175,7 +173,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(750,352)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new ReverseBluedotControl())
+                .with(new BluedotControlDown())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -183,7 +181,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(800,200)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new BluedotControl())
+                .with(new BluedotControlUp())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -191,7 +189,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(850,352)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new ReverseBluedotControl())
+                .with(new BluedotControlDown())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -199,7 +197,7 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(900,200)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new BluedotControl())
+                .with(new BluedotControlUp())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
@@ -207,19 +205,14 @@ endzone = Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(950,352)
                 .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
-                .with(new ReverseBluedotControl())
+                .with(new BluedotControlDown())
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
-
-
-
-
-
 
 // Spawner de roterende hjul som man skal undgå i første række af mappet.
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(800,4)
+                .at(900,4)
                 .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
                 .with(rotatingControl)
                 .with(new CollidableComponent(true))
@@ -227,7 +220,7 @@ endzone = Entities.builder()
 
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(600,4)
+                .at(700,4)
                 .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
                 .with(reverseRotation)
                 .with(new CollidableComponent(true))
@@ -235,7 +228,7 @@ endzone = Entities.builder()
 
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(200,4)
+                .at(300,4)
                 .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
                 .with(reverseRotation)
                 .with(new CollidableComponent(true))
@@ -244,7 +237,7 @@ endzone = Entities.builder()
 
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(400,4)
+                .at(500,4)
                 .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
                 .with(rotatingControl)
                 .with(new CollidableComponent(true))
@@ -252,7 +245,7 @@ endzone = Entities.builder()
 
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(300,96)
+                .at(400,96)
                 .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
                 .with(rotatingControl)
                 .with(new CollidableComponent(true))
@@ -260,7 +253,7 @@ endzone = Entities.builder()
 
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(500,96)
+                .at(600,96)
                 .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
                 .with(reverseRotation)
                 .with(new CollidableComponent(true))
@@ -268,7 +261,7 @@ endzone = Entities.builder()
 
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(700,96)
+                .at(800,96)
                 .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
                 .with(rotatingControl)
                 .with(new CollidableComponent(true))
@@ -276,7 +269,7 @@ endzone = Entities.builder()
 
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(100,96)
+                .at(200,96)
                 .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
                 .with(reverseRotation)
                 .with(new CollidableComponent(true))

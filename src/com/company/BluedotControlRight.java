@@ -6,8 +6,7 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.time.LocalTimer;
 import javafx.util.Duration;
 
-public class ReverseBluedotControl extends Control {
-
+public class BluedotControlRight extends Control {
     private LocalTimer timer = FXGL.newLocalTimer();
     private boolean goingUp = false;
 
@@ -22,8 +21,8 @@ public class ReverseBluedotControl extends Control {
             timer.capture();
         }
 
-        double speed = tpf * -110;
+        double speed = tpf * 110;
 
-        entity.translateY(goingUp ? -speed : speed);
+        entity.translateX(goingUp ? -speed : speed);
     }
 }

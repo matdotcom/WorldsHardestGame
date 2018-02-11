@@ -1,13 +1,12 @@
 package com.company;
 
-
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.entity.Control;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.time.LocalTimer;
 import javafx.util.Duration;
 
- class BluedotControl extends Control {
+public class BluedotControlDown extends Control {
 
     private LocalTimer timer = FXGL.newLocalTimer();
     private boolean goingUp = false;
@@ -23,7 +22,7 @@ import javafx.util.Duration;
             timer.capture();
         }
 
-        double speed = tpf * 110;
+        double speed = tpf * -110;
 
         entity.translateY(goingUp ? -speed : speed);
     }
