@@ -12,6 +12,7 @@ import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsWorld;
+import com.almasb.fxgl.physics.box2d.dynamics.World;
 import com.almasb.fxgl.settings.GameSettings;
 import common.PlayerControl;
 import javafx.scene.input.KeyCode;
@@ -268,7 +269,9 @@ getGameWorld().addEntities(player,bluedot);
             // Her definerer vi at hvis en kollision finder sted imellem player og bluedot, sætter den players position tilbage til spawn!!
             @Override
             protected void onHitBoxTrigger(Entity player, Entity endzone, HitBox playerBox, HitBox endzoneBox){
-                System.out.println("this is a test");
+                // her skal den skifte level.
+                // Og sætte playerposition til den nye starting position.
+                // Og evt spille en vindermelodi
             }
         });
 
