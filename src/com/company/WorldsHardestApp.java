@@ -1,5 +1,6 @@
 package com.company;
 
+import com.almasb.fxgl.ai.AIControl;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
@@ -8,10 +9,7 @@ import com.almasb.fxgl.entity.component.CollidableComponent;
 import com.almasb.fxgl.gameplay.Level;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
-import com.almasb.fxgl.physics.BoundingShape;
-import com.almasb.fxgl.physics.CollisionHandler;
-import com.almasb.fxgl.physics.HitBox;
-import com.almasb.fxgl.physics.PhysicsWorld;
+import com.almasb.fxgl.physics.*;
 import com.almasb.fxgl.physics.box2d.dynamics.World;
 import com.almasb.fxgl.settings.GameSettings;
 import common.PlayerControl;
@@ -32,6 +30,7 @@ private RotatingControl rotatingControl;
 private PlayerControl playerControl;
 private Entity player,bluedot, endzone;
 private ReverseRotation reverseRotation;
+private BluedotControl bluedotControl;
 
 
     @Override
@@ -60,6 +59,7 @@ private ReverseRotation reverseRotation;
         playerControl = new PlayerControl();
         rotatingControl = new RotatingControl();
         reverseRotation = new ReverseRotation();
+        bluedotControl = new BluedotControl();
 
 
         // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
@@ -77,6 +77,9 @@ endzone = Entities.builder()
         .at(1100,604)
         .viewFromNodeWithBBox(new Rectangle(96,206,Color.GREEN))
         .buildAndAttach();
+
+// Spawner patruljerende bluedots
+
 
 
 
