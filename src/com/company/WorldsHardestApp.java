@@ -54,6 +54,7 @@ private BluedotControlRight bluedotControlRight;
 
     @Override
     protected void initGame() {
+        // her initialiserer vi alle vores entity kontrol klasser.
         playerControl = new PlayerControl();
         rotatingControl = new RotatingControl();
         reverseRotation = new ReverseRotation();
