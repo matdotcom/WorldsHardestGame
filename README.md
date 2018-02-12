@@ -3,7 +3,7 @@
 ## CONTROLS
 You move by using WASD keys. 
 ## BASICS OF THE GAME :
-Dont walk into anything blue! If you do, your position resets all the way back to the spawn. 
+Dont walk into anything blue!(Includes the edges of the map) If you do, your position resets all the way back to the spawn. 
 This game is called worlds hardest game for a reason. 
 
 ## CREDITS : 
