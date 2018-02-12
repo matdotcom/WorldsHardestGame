@@ -1,5 +1,5 @@
-## Worlds Hardest game!
-
+# Worlds Hardest game!
+#______________________
 ## CONTROLS
 ### You move by using WASD keys. 
 ## Basics of the game :
