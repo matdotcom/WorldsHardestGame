@@ -2,7 +2,7 @@
 
 ## CONTROLS
 You move by using WASD keys. 
-## Basics of the game :
+## BASICS OF THE GAME :
 Dont walk into anything blue! If you do, your position resets all the way back to the spawn. 
 This game is called worlds hardest game for a reason. 
 
@@ -14,7 +14,7 @@ Thank you Barzoom! For creating the awesome victory theme!
 Thank you Snayk! For creating the awesome background music!
 
 
-## links : 
+## lINKS : 
 Almas - 
 [https://github.com/AlmasB/FXGL]
 Victory sound - 
