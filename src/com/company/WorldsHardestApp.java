@@ -80,6 +80,82 @@ endzone = Entities.builder()
         .viewFromNodeWithBBox(new Rectangle(96,206,Color.GREEN))
         .buildAndAttach();
 
+// Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
+        player = Entities.builder()
+                .type(Type.PLAYER)
+                .at(1100,80)
+                .bbox(new HitBox("PLAYER_BODY", BoundingShape.box(25,25)))
+                .viewFromNode(new Rectangle(25,25, Color.DARKRED))
+                .with(playerControl)
+                .build();
+
+
+// Spawner de roterende hjul som man skal undgå i første række af mappet.
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(900,4)
+                .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
+                .with(rotatingControl)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(700,4)
+                .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
+                .with(reverseRotation)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(300,4)
+                .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
+                .with(reverseRotation)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(500,4)
+                .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
+                .with(rotatingControl)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(400,96)
+                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
+                .with(rotatingControl)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(600,96)
+                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
+                .with(reverseRotation)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(800,96)
+                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
+                .with(rotatingControl)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(200,96)
+                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
+                .with(reverseRotation)
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
 // Spawner patruljerende bluedots i anden række
 
         Entities.builder()
@@ -210,72 +286,96 @@ endzone = Entities.builder()
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
 
-// Spawner de roterende hjul som man skal undgå i første række af mappet.
+        // tredje rækkes forhindringer
+
+        
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(900,4)
-                .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
-                .with(rotatingControl)
+                .at(750,402)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControlUp())
                 .with(new CollidableComponent(true))
-                .buildAndAttach();
+                .buildAndAttach(getGameWorld());
 
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(700,4)
-                .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
+                .at(700,552)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControlDown())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(650,402)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControlUp())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(800,402)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControlRight())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(800,482)
+                .viewFromNodeWithBBox(new Rectangle(50,40,Color.BLUE))
+                .with(new BluedotControlRight())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(800,552)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControlRight())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(600,402)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControlLeft())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(600,482)
+                .viewFromNodeWithBBox(new Rectangle(50,40,Color.BLUE))
+                .with(new BluedotControlLeft())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(600,552)
+                .viewFromNodeWithBBox(new Rectangle(50,50,Color.BLUE))
+                .with(new BluedotControlLeft())
+                .with(new CollidableComponent(true))
+                .buildAndAttach(getGameWorld());
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(200,496)
+                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
                 .with(reverseRotation)
                 .with(new CollidableComponent(true))
                 .buildAndAttach();
 
         Entities.builder()
                 .type(Type.BLUEDOT)
-                .at(300,4)
+                .at(300,404)
                 .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
                 .with(reverseRotation)
                 .with(new CollidableComponent(true))
                 .buildAndAttach();
-
-
-        Entities.builder()
-                .type(Type.BLUEDOT)
-                .at(500,4)
-                .viewFromNodeWithBBox(new Rectangle(13,200,Color.BLUE))
-                .with(rotatingControl)
-                .with(new CollidableComponent(true))
-                .buildAndAttach();
-
-        Entities.builder()
-                .type(Type.BLUEDOT)
-                .at(400,96)
-                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
-                .with(rotatingControl)
-                .with(new CollidableComponent(true))
-                .buildAndAttach();
-
-        Entities.builder()
-                .type(Type.BLUEDOT)
-                .at(600,96)
-                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
-                .with(reverseRotation)
-                .with(new CollidableComponent(true))
-                .buildAndAttach();
-
-        Entities.builder()
-                .type(Type.BLUEDOT)
-                .at(800,96)
-                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
-                .with(rotatingControl)
-                .with(new CollidableComponent(true))
-                .buildAndAttach();
-
-        Entities.builder()
-                .type(Type.BLUEDOT)
-                .at(200,96)
-                .viewFromNodeWithBBox(new Rectangle(200,13,Color.BLUE))
-                .with(reverseRotation)
-                .with(new CollidableComponent(true))
-                .buildAndAttach();
-
 
 
         // Her laver jeg mappet
@@ -329,14 +429,7 @@ endzone = Entities.builder()
                 .buildAndAttach();
 
 
-        // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
-        player = Entities.builder()
-                .type(Type.PLAYER)
-                .at(1100,80)
-                .bbox(new HitBox("PLAYER_BODY", BoundingShape.box(25,25)))
-                .viewFromNode(new Rectangle(25,25, Color.DARKRED))
-                .with(playerControl)
-                .build();
+
 
 
 
@@ -402,6 +495,9 @@ getGameWorld().addEntities(player,bluedot);
                 // her skal den skifte level.
                 // Og sætte playerposition til den nye starting position.
                 // Og evt spille en vindermelodi
+                getAudioPlayer().stopAllMusic();
+                getAudioPlayer().stopAllSounds();
+                getAudioPlayer().playSound("victory.mp3");
             }
         });
 

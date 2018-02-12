@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="WorldsHardestGame!">
+    <output-path>$PROJECT_DIR$/out/artifacts/WorldsHardestGame_</output-path>
+    <root id="archive" name="WorldsHardestGame!.jar" />
+  </artifact>
+</component>
