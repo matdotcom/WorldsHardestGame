@@ -13,8 +13,8 @@ Thank you Barzoom! For creating the awesome victory theme!
 
 Thank you Snayk! For creating the awesome background music!
 
-.
-links : 
+
+## links : 
 Almas - 
 [https://github.com/AlmasB/FXGL]
 Victory sound - 
