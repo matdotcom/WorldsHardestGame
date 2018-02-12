@@ -288,7 +288,7 @@ endzone = Entities.builder()
 
         // tredje rækkes forhindringer
 
-        
+
         Entities.builder()
                 .type(Type.BLUEDOT)
                 .at(750,402)
