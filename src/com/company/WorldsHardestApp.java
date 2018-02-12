@@ -83,7 +83,7 @@ endzone = Entities.builder()
 // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
         player = Entities.builder()
                 .type(Type.PLAYER)
-                .at(100, 700)
+                .at(1100, 80)
                 .bbox(new HitBox("PLAYER_BODY", BoundingShape.box(25,25)))
                 .viewFromNode(new Rectangle(25,25, Color.DARKRED))
                 .with(playerControl)
@@ -541,7 +541,7 @@ getGameWorld().addEntities(player,bluedot);
             // Her definerer vi at hvis en kollision finder sted imellem player og bluedot, sætter den players position tilbage til spawn!!
            @Override
             protected void onHitBoxTrigger(Entity player, Entity bluedot, HitBox playerBox, HitBox bluedotBox){
-               player.setPosition(100,700);
+               player.setPosition(1100,80);
                getAudioPlayer().playSound("smack.wav");
            }
         });
