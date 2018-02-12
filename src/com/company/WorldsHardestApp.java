@@ -83,7 +83,7 @@ endzone = Entities.builder()
 // Spawner vores spiller, vi definerer hvor den spawner, samt hvor stor den skal være.
         player = Entities.builder()
                 .type(Type.PLAYER)
-                .at(1100,80)
+                .at(100, 700)
                 .bbox(new HitBox("PLAYER_BODY", BoundingShape.box(25,25)))
                 .viewFromNode(new Rectangle(25,25, Color.DARKRED))
                 .with(playerControl)
@@ -377,6 +377,40 @@ endzone = Entities.builder()
                 .with(new CollidableComponent(true))
                 .buildAndAttach();
 
+        // Sidste Rækkes forhindringer!
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(430,650)
+                .viewFromNodeWithBBox(new Rectangle(13,150,Color.BLUE))
+                .with(new BluedotControlLeft())
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(550,600)
+                .viewFromNodeWithBBox(new Rectangle(13,100,Color.BLUE))
+                .with(new BluedotControlLeft())
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(650,600)
+                .viewFromNodeWithBBox(new Rectangle(13,75,Color.BLUE))
+                .with(new BluedotControlLeft())
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
+        Entities.builder()
+                .type(Type.BLUEDOT)
+                .at(650,725)
+                .viewFromNodeWithBBox(new Rectangle(13,75,Color.BLUE))
+                .with(new BluedotControlLeft())
+                .with(new CollidableComponent(true))
+                .buildAndAttach();
+
 
         // Her laver jeg mappet
         Entities.builder()
@@ -492,9 +526,8 @@ getGameWorld().addEntities(player,bluedot);
             // Her definerer vi at hvis en kollision finder sted imellem player og bluedot, sætter den players position tilbage til spawn!!
             @Override
             protected void onHitBoxTrigger(Entity player, Entity endzone, HitBox playerBox, HitBox endzoneBox){
-                // her skal den skifte level.
+                // her skal den skifte level. Når almas laver tutorial omkring level objekter.
                 // Og sætte playerposition til den nye starting position.
-                // Og evt spille en vindermelodi
                 getAudioPlayer().stopAllMusic();
                 getAudioPlayer().stopAllSounds();
                 getAudioPlayer().playSound("victory.mp3");
@@ -508,7 +541,7 @@ getGameWorld().addEntities(player,bluedot);
             // Her definerer vi at hvis en kollision finder sted imellem player og bluedot, sætter den players position tilbage til spawn!!
            @Override
             protected void onHitBoxTrigger(Entity player, Entity bluedot, HitBox playerBox, HitBox bluedotBox){
-               player.setPosition(1100,80);
+               player.setPosition(100,700);
                getAudioPlayer().playSound("smack.wav");
            }
         });

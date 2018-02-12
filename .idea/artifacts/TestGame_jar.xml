@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TestGame:jar">
+    <output-path>$PROJECT_DIR$/JARFILE</output-path>
+    <root id="archive" name="TestGame.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/JARFILE/src/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="WorldsHardestGame" />
+      <element id="module-output" name="JARFILE" />
+      <element id="extracted-dir" path="$USER_HOME$/Documents/Stuff til intelliJ/fxgl-0.4.2-uber.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
