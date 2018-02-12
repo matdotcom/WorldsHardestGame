@@ -1,9 +1,10 @@
 # Worlds Hardest game!
-#______________________
+
 ## CONTROLS
-### You move by using WASD keys. 
+You move by using WASD keys. 
 ## Basics of the game :
-### Dodge the blue stuff! 
+Dont walk into anything blue! If you do, your position resets all the way back to the spawn. 
+This game is called worlds hardest game for a reason. 
 
 ## CREDITS : 
 Thank you to Almas! For creating FXGL. Without this, i would not have been able to create this game. 
