@@ -1,5 +1,9 @@
 # Worlds Hardest game!
 
+## HOW TO PLAY
+Download the repo, go into jarfile folder, run the jarfile and dont update fxgl as i havent touched this game in years. 
+Enjoy my take on the game 
+
 ## CONTROLS
 You move by using WASD keys. 
 ## BASICS OF THE GAME :
