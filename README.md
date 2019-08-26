@@ -1,7 +1,7 @@
 # Worlds Hardest game!
 
 ## HOW TO PLAY
-Download the repo, go into jarfile folder, run the jarfile and dont update fxgl as i havent touched this game in years. 
+Download the repo, go into jarfile folder, run the jarfile called testgame.jar and dont update fxgl as i havent touched this game in years. 
 Enjoy my take on the game 
 
 ## CONTROLS
